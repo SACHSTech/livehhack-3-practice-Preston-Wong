@@ -13,15 +13,12 @@ public class Main {
         // make test calls to your methods here
         Scanner scanner = new Scanner(System.in);
 
-        int a;
-        int b;
+        int n;
 
-        System.out.println("What is the valeu of the first integer? ");
-        a = scanner.nextInt();
-        System.out.println("What is the value fo the second int? ");
-        b = scanner.nextInt();
+        System.out.println("What is your number? ");
+        n = scanner.nextInt();
 
-        System.out.println(sortaSum(a, b));
+        System.out.println(old35(n));
     }
 
     /**
@@ -56,5 +53,38 @@ public class Main {
         } else {
             return (a + b);
         }
-    }  
+    } 
+    
+    /**
+     * 
+     * @param n the integer that is being determined to be within 10
+     * @param outsideMode if you are allowed to go outside the 1 - 10 range
+     * @return returns true or false depending on if the number is within 1 - 10 when outsideMode is false
+     */
+    public static boolean in1To10(int n, boolean outsideMode) {
+        
+        if (outsideMode == false) {
+            if (n >= 1 && n <= 10) {
+                return true;
+            } else {
+                return false;
+            }
+        } else {
+            if (n <= 1 || n >= 10 ) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+    }
+
+    public static boolean old35(int n) {
+        if (n%3 == 0 && n%5 == 0) {
+            return false;
+        } else if (n%3 == 0 || n%5 == 0) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 }
