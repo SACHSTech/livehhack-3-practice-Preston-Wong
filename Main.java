@@ -13,12 +13,12 @@ public class Main {
         // make test calls to your methods here
         Scanner scanner = new Scanner(System.in);
 
-        String str = "";
+        String str;
 
-        System.out.println("What is the word that you want your letters doubled? ");
+        System.out.println("What is your sequcne of letters? ");
         str = scanner.nextLine();
-
-        System.out.println(countCode(str));
+      
+        System.out.println(starOut(str));
     }
 
     /**
@@ -238,5 +238,88 @@ public class Main {
             }
         }
         return count;
+    }
+
+    /**
+     * 
+     * @param str the string that is being examined 
+     * @return returns true if there is a letter sandwhiched by 2 b's
+     */
+    public static boolean bobThere(String str){
+        for (int i = 0; i < str.length() - 2; i++) {
+            if (str.charAt(i) == 'b' && (str.charAt(i + 2) == 'b')) {
+              return true;
+            } 
+        } return false;
+    }
+
+    /**
+     * 
+     * @param str sequcne of letters
+     * @param n where to start repeating starting at the end of the string 
+     * @return the nth ending letters n times
+     */
+    public static String repeatEnd (String str, int n) {
+
+        String Word = "";
+        String Result = "";
+
+        for (int i = 0; i < n; i++) {
+            Word = str.substring(str.length() - n);
+            Result += Word;
+        } return Result;
+    }
+
+    /**
+     * 
+     * @param str sequcne of letters
+     * @param n where to start looking in the sequcne of letters
+     * @return returns true if the first n letters are repeated again in the string 
+     */
+    public static boolean prefixAgain(String str, int n) {
+        String Word = "";
+
+        Word = str.substring(0, n);
+
+       if (str.indexOf(Word, n) >= 1)  {
+            return true;
+        } else { 
+            return false; 
+        }
+    }
+
+    /**
+     * 
+     * @param str the sequcne of letters that is being examined to see if there is a star sandwhiched by 2 like letters
+     * @return true if there is a star sandwhich, otherwise it returns false
+     */
+    public static boolean sameStarChar(String str) {
+        
+        for (int i = 1; i < str.length() - 1; i++) {
+            if (str.charAt(i) == '*' && str.charAt(i - 1) != str.charAt(i + 1)) {
+                return false;
+            }
+        } return true;
+
+    }
+
+    /**
+     * 
+     * @param str sequcne of letters that includes a star
+     * @return returns the sequence of letters that excludes the star and the letter before and after it 
+     */
+    public static String starOut(String str) {
+
+        String Result = "";
+  
+        for (int i = 0; i < str.length(); i++) {
+            if (i == 0 && str.charAt(i) != '*'){
+                Result += str.charAt(i);
+            } else if (i > 0 && str.charAt(i) != '*' && str.charAt(i-1) != '*') {
+                Result += str.charAt(i);
+            } else if (i > 0 && str.charAt(i) == '*' && str.charAt(i-1) != '*') {
+                Result = Result.substring(0,Result.length()-1); 
+            }
+        } return Result;
     }
 }
