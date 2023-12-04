@@ -13,15 +13,12 @@ public class Main {
         // make test calls to your methods here
         Scanner scanner = new Scanner(System.in);
 
-        int a;
-        int b;
+        String str = "";
 
-        System.out.println("What is the value of the first number? ");
-        a = scanner.nextInt();
-        System.out.println("What is the value of the second number? ");
-        b = scanner.nextInt();
+        System.out.println("What is the word that you want your letters doubled? ");
+        str = scanner.nextLine();
 
-        System.out.println(shareDigit(a,b));
+        System.out.println(countCode(str));
     }
 
     /**
@@ -209,5 +206,37 @@ public class Main {
         } else {
             return false;
         }
+    }
+
+    /**
+     * 
+     * @param str the word that is having their letters doubled
+     * @return the word with their letters doubled
+     */
+    public static String doubleChar(String str) {
+        
+        String Word = "";
+
+        for (int i = 0; i <= str.length() - 1; i++) {
+           Word = Word + str.charAt(i) + str.charAt(i);
+        }
+        return Word;
+    }
+
+    /**
+     * 
+     * @param str the sequnce of letters 
+     * @return if the CO, some random letter, and e are next to each other
+     */
+    public static int countCode(String str) {
+        
+        int count = 0;
+
+        for (int i = 0; i < str.length() - 3; i++) {
+            if (str.substring(i, i + 2).equals("co") && str.charAt(i + 3) == 'e') {
+                count++;
+            }
+        }
+        return count;
     }
 }
