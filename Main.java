@@ -19,6 +19,8 @@ public class Main {
         str = scanner.nextLine();
       
         System.out.println(starOut(str));
+
+        scanner.close();
     }
 
     /**
